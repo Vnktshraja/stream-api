@@ -190,6 +190,7 @@ public class StreamApiApplication {
 //        List n = lst.stream().sorted().collect(Collectors.toList()); // just sort ascending
 
         System.out.println(il);
+        System.out.println("-------");
 
 
     }
