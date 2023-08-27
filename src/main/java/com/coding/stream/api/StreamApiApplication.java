@@ -21,11 +21,10 @@ public class StreamApiApplication {
 
     public static void main(String[] args) {
 
-        //flatMap
+        //flatMap is to get @onetomany mapping object (it means list of list object)
         System.out.println("------------------flatMap------------------");
         String projects = employee.stream()
-                .map(employee -> employee.getProjects())
-                .flatMap(String -> String.stream())
+                .flatMap(employee -> employee.getProjects().stream())
                 .collect(Collectors.joining(","));
         System.out.println(projects);
 
@@ -192,6 +191,32 @@ public class StreamApiApplication {
         System.out.println(il);
         System.out.println("-------");
         System.out.println("-------new line added---------");
+
+
+        System.out.println("----------------------------");
+
+
+        List<Integer> findDuplication = List.of(5, 3, 9, 7, 0);
+
+        Integer duplicated = findDuplication.stream()
+                .distinct()
+                .limit(0) // Limit to at most 2 elements (if all elements are the same, only 1 distinct value)
+                .findFirst()
+                .orElse(null);
+
+        System.out.println("duplicated value: " + duplicated);
+
+        System.out.println("----------------------------");
+
+        List<Integer> integerList = List.of(5, 5, 9, 5, 5); // Replace with your list of integers
+
+        Integer firstValue = integerList.get(0);
+        boolean allEqual = integerList.stream().allMatch(value -> value.equals(firstValue));
+
+        Integer distinctValue = allEqual ? firstValue : null;
+
+        System.out.println("Distinct value: " + distinctValue);
+
 
 
     }
