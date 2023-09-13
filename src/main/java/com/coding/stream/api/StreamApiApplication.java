@@ -166,7 +166,6 @@ public class StreamApiApplication {
                         String change = e.getLastName();
                         s3.setName("Venkat");
                         e.setFirstName(change);
-
                         System.out.println("compled");
                 });
         System.out.println(decreasedSalary);
@@ -218,7 +217,24 @@ public class StreamApiApplication {
         System.out.println("Distinct value: " + distinctValue);
 
 
+        System.out.println("----------------------------******______------------");
 
+        List<Employee> listOfEmp = employee.stream().filter(employee1 -> !employee1.getFirstName().equals("Viru")).toList();
+
+        System.out.println("list of employee-->"+listOfEmp);
+
+
+        System.out.println("----------------------------###########--------------------");
+
+        Map<String, List<Employee>> mapTest = new HashMap<>();
+        mapTest.put("test",employee);
+        List<List<Employee>> newEmployee = new ArrayList<>();
+        mapTest.forEach((key,values)->{
+            List<Employee> lists = values.stream().filter(employee1 -> !employee1.getFirstName().startsWith("S")).toList();
+            newEmployee.add(values);
+        });
+        System.out.println(newEmployee);
     }
+
 
 }
