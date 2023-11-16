@@ -23,7 +23,7 @@ public class StreamApiApplication {
 
         //flatMap is to get @onetomany mapping object (it means list of list object)
         System.out.println("------------------flatMap------------------");
-        String projects = employee.stream()
+        String projects = employee.stream().filter(employee1 -> employee1.getFirstName().startsWith("V"))
                 .flatMap(employee -> employee.getProjects().stream())
                 .collect(Collectors.joining(","));
         System.out.println(projects);
@@ -234,6 +234,26 @@ public class StreamApiApplication {
             newEmployee.add(values);
         });
         System.out.println(newEmployee);
+
+
+
+        boolean isTrue =  true;
+
+        if(isTrue){
+            int io = 5;
+            if(true){
+                System.out.println("--->"+io);
+            }
+        }
+        System.out.println("----------------------------??????******?????--------------------");
+        List<Integer> orders = Arrays.asList(4,6,8,10,12,14,16,18,20);
+        System.out.println(orders);
+
+        
+
+
+
+
     }
 
 
