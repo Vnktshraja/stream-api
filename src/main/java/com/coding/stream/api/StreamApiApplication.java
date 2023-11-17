@@ -2,6 +2,7 @@ package com.coding.stream.api;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -246,11 +247,15 @@ public class StreamApiApplication {
             }
         }
         System.out.println("----------------------------??????******?????--------------------");
-        List<Integer> orders = Arrays.asList(4,6,8,10,12,14,16,18,20);
+        int[] orders = {4,6,8,10,12,14,16,18,20,12};
         System.out.println(orders);
 
-        
+        System.out.println("**********normal*********");
 
+        Date d = new Date();
+        d.setDate(8);
+
+        Student s1 = new Student(1,"venkat",d ,"9087783778","34,star street");
 
 
 

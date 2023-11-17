@@ -7,13 +7,13 @@ public class Student {
     private Integer id;
     private String name;
     private Date dob;
-    private Long mobile;
+    private String mobile;
     private String address;
 
     public Student() {
     }
 
-    public Student(Integer id, String name, Date dob, Long mobile, String address) {
+    public Student(Integer id, String name, Date dob, String mobile, String address) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -45,12 +45,12 @@ public class Student {
         this.dob = dob;
     }
 
-    public Long getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
     public void setMobile(Long mobile) {
-        this.mobile = mobile;
+        this.mobile = String.valueOf(mobile);
     }
 
     public String getAddress() {
