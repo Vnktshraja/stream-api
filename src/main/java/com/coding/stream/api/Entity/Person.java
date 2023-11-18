@@ -1,10 +1,10 @@
-package com.coding.stream.api;
+package com.coding.stream.api.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.coding.stream.api.Person.Sex.FEMALE;
-import static com.coding.stream.api.Person.Sex.MALE;
+import static com.coding.stream.api.Entity.Person.Sex.FEMALE;
+import static com.coding.stream.api.Entity.Person.Sex.MALE;
 
 public class Person {
 

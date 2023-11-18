@@ -1,4 +1,4 @@
-package com.coding.stream.api;
+package com.coding.stream.api.Entity;
 
 @FunctionalInterface
 public interface Anonim {

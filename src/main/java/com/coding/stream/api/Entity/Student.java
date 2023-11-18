@@ -1,4 +1,4 @@
-package com.coding.stream.api;
+package com.coding.stream.api.Entity;
 
 import java.util.Date;
 
@@ -67,7 +67,6 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dob=" + dob +
-                ", mobile=" + mobile +
                 ", address='" + address + '\'' +
                 '}';
     }

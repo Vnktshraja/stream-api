@@ -1,4 +1,4 @@
-package com.coding.stream.api;
+package com.coding.stream.api.Entity;
 
 import java.util.List;
 

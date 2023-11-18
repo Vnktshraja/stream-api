@@ -1,4 +1,4 @@
-package com.coding.stream.api;
+package com.coding.stream.api.Entity;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class Division {
     public void except() throws ArithmeticException{
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Welcome to Exception practise");
+            System.out.println("Welcome to Exception");
 
             System.out.println("Enter first Number: ");
             int a = scanner.nextInt();
