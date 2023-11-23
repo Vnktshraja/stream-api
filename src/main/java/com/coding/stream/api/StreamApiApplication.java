@@ -15,12 +15,21 @@ import java.util.stream.Stream;
 public class StreamApiApplication {
 
     private static List<Employee> employee = new ArrayList<>();
+    private static List<Person> persons = new ArrayList<>();
 
     static {
         employee.add(new Employee("Sachin", "Tendulkar", 10000.0, List.of("Project 1", "Project 2")));
         employee.add(new Employee("Mahi", "Dhoni", 12000.0, List.of("Project 3", "Project 4")));
         employee.add(new Employee("Viru", "Shewag", 14000.0, List.of("Project 2", "Project 4")));
         employee.add(new Employee("Virat", "Kholi", 15000.0, List.of("Project 1", "Project 3")));
+    }
+    static {
+        persons.add(new Person("venkat",27,"v@gmail.com", Person.Sex.MALE));
+        persons.add(new Person("venkat",28,"ven@gmail.com", Person.Sex.MALE));
+        persons.add(new Person("venkat",29,"venkatesh@gmail.com", Person.Sex.MALE));
+        persons.add(new Person("raja",50,"ra@gmail.com", Person.Sex.MALE));
+        persons.add(new Person("raja",52,"raja@gmail.com", Person.Sex.MALE));
+
     }
 
     public static void main(String[] args) {
@@ -261,6 +270,11 @@ public class StreamApiApplication {
         d.setDate(8);
         Student s1 = new Student(1,"venkat",d ,"9087783778","34,star street");
         System.out.println(s1);
+
+        System.out.println("************* Grouping same name in map *********************");
+
+        Map<String,List<Person>> collective = persons.stream().collect(Collectors.groupingBy(Person::getName));
+        System.out.println(collective);
 
 
     }
