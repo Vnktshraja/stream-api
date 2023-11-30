@@ -9,14 +9,14 @@ import java.util.Set;
 @Slf4j
 public class Demo {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         findDuplicateCharInMyName();
         compareTwoArrays();
     }
 
     private static void compareTwoArrays() {
-        int arr1 [] = {1,2,3,4,5,6};
-        int arr2 [] = {7,8,9,2,1,0};
+        int[] arr1 = {1,2,3,4,5,6};
+        int[] arr2 = {7,8,9,2,1,0};
         List<Integer> list = new ArrayList<>();
 
         for (int i = 0 ; i<arr1.length ; i++){
