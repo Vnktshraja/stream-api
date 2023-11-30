@@ -4,6 +4,7 @@ import com.coding.stream.api.Entity.Anonim;
 import com.coding.stream.api.Entity.Employee;
 import com.coding.stream.api.Entity.Person;
 import com.coding.stream.api.Entity.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @SpringBootApplication
+@Slf4j
 public class StreamApiApplication {
 
     private static List<Employee> employee = new ArrayList<>();
@@ -35,16 +37,16 @@ public class StreamApiApplication {
     public static void main(String[] args) {
 
         //flatMap is to get @onetomany mapping object (it means list of list object)
-        System.out.println("------------------flatMap------------------");
+        log.info("------------------flatMap------------------");
         String projects = employee.stream().filter(employee1 -> employee1.getFirstName().startsWith("V"))
                 .flatMap(employee -> employee.getProjects().stream())
                 .collect(Collectors.joining(","));
-        System.out.println(projects);
+        log.info(projects);
 
 //		SpringApplication.run(StreamApiApplication.class, args);
 
         //Any Operation which is returning the stream itself is called intermediate operation.
-        System.out.println("-------------------forEach-----------------");
+        log.info("-------------------forEach-----------------");
         // forEach loop
         employee.stream().forEach(employee -> System.out.println(employee));
 
@@ -57,28 +59,28 @@ public class StreamApiApplication {
                         employee.getProjects()))
                 .collect(Collectors.toList());
 
-        System.out.println(increaseSalary);
+        log.info("copy value from one object to another object: "+increaseSalary);
 
-        System.out.println("------------------filter------------------");
+        log.info("------------------filter------------------");
         //filter
         List<Employee> decreasedSalary = employee.stream().filter(employee -> employee.getSalary() < 12000.0).map(employee -> new Employee(employee.getFirstName(),
                         employee.getLastName(),
                         employee.getSalary() - 1000,
                         employee.getProjects()))
                 .collect(Collectors.toList());
-        System.out.println(decreasedSalary);
+        log.info("decreased salary who has above 12000 : "+decreasedSalary);
 
-        System.out.println("------------------findFirst------------------");
+        log.info("------------------findFirst------------------");
         //findFirst return the Optional<> so it required orElseThrow(null or exception)
         Employee firstEmployee = employee.stream().filter(employee -> employee.getSalary() > 12000.0).map(employee -> new Employee(employee.getFirstName(),
                 employee.getLastName(),
                 employee.getSalary() + 700,
                 employee.getProjects())).findFirst().orElseThrow(null);
 
-        System.out.println(firstEmployee);
+        log.info(""+firstEmployee);
 
         //flatMap
-        System.out.println("------------------flatMap------------------");
+        log.info("------------------flatMap------------------");
         String projectss = employee.stream()
                 .map(employee -> employee.getProjects())
                 .flatMap(String -> String.stream())
@@ -86,7 +88,7 @@ public class StreamApiApplication {
         System.out.println(projects);
 
         //Short Circuit operations
-        System.out.println("------------------Skip and limit------------------");
+        log.info("------------------Skip and limit------------------");
         List<Employee> cirtuit = employee
                 .stream()
                 .skip(1)
@@ -95,13 +97,13 @@ public class StreamApiApplication {
         System.out.println(cirtuit);
 
         //Finite Data
-        System.out.println("------------------finite data------------------");
+        log.info("------------------finite data------------------");
         Stream.generate(Math::random)
                 .limit(5)
                 .forEach(value -> System.out.println(value));
 
         //sorting
-        System.out.println("------------------Sorting with comparator------------------");
+        log.info("------------------Sorting with comparator------------------");
         List<Employee> sorting = employee.stream().
                 sorted((o1, o2) -> {
                     if (o1.getSalary() < o2.getSalary())
@@ -113,35 +115,33 @@ public class StreamApiApplication {
         System.out.println(sorting);
 
         ///min or max
-        System.out.println("------------------Min or Max------------------");
+        log.info("------------------Min or Max------------------");
         Employee maximum = employee.stream()
                 .max(Comparator.comparing(Employee::getSalary))
                 .orElseThrow(NoSuchElementException::new);
         System.out.println(maximum);
 
         //reduce
-        System.out.println("------------------reduce------------------");
+        log.info("------------------reduce------------------");
         Double sumOfSalary = employee.stream().map(employee -> employee.getSalary())
                 .reduce(0.0, (a, b) -> a + b);
 
         System.out.println(sumOfSalary);
 
         //IntegerStream
-        System.out.println("------------------IntStream inbuild example------------------");
+        log.info("------------------IntStream inbuild example------------------");
         IntStream.range(1, 6).forEach(System.out::println);
 
-        System.out.println();
-
         //IntegerStream & Skip() & value by reference
-        System.out.println("------------------IntStream and Skip and reference value------------------");
+        log.info("------------------IntStream and Skip and reference value------------------");
         IntStream.range(1, 10).skip(4).forEach(x -> System.out.println(x));
 
         //sum()
-        System.out.println("------------------IntStream inbuild example------------------");
+        log.info("------------------IntStream inbuild example------------------");
         int s = IntStream.range(1, 6).sum();
         System.out.println(s);
 
-        System.out.println("----------------filter and Map-----------------");
+        log.info("----------------filter and Map-----------------");
         String[] name = {"dog", "ball", "bello", "bigboss", "cat", "apple", "elephant", "fish"};
 
         List<String> list = Arrays.stream(name)
@@ -155,14 +155,14 @@ public class StreamApiApplication {
 
         List<Person> person = Person.getDefaultPerson();
 
-        System.out.println(person);
+        log.info(""+person);
 
-        System.out.println("------------AnomEx:-----------");
+        log.info("------------AnomEx:-----------");
 
         Anonim eg = () -> System.out.println("example for anonimus inner class");
         eg.demo();
 
-        System.out.println("------------Decending: using reversed -----------");
+        log.info("------------Decending: using reversed -----------");
 
         List<Employee> ess = employee.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).collect(Collectors.toList());
 
@@ -181,18 +181,18 @@ public class StreamApiApplication {
                         e.setFirstName(change);
                         System.out.println("compled");
                 });
-        System.out.println(decreasedSalary);
+        log.info(""+decreasedSalary);
 
-        System.out.println(s3);
+        log.info(""+s3);
 
-        System.out.println("----------------Comparator---------------------");
+        log.info("----------------Comparator---------------------");
 
         List<Person> ar = Person.getDefaultPerson();
 
         Collections.sort(ar, (o1, o2) -> o2.getAge()-o1.getAge()); // decending in age  && o1-o2 for ascending
         System.out.println(ar);
 
-        System.out.println("-----------------filter , Map , reduce----------------");
+        log.info("-----------------filter , Map , reduce----------------");
 
         List<Integer> lst = Arrays.asList(2,6,4,23,21,15,65,11);
 
@@ -200,12 +200,12 @@ public class StreamApiApplication {
 
 //        List n = lst.stream().sorted().collect(Collectors.toList()); // just sort ascending
 
-        System.out.println(il);
-        System.out.println("-------");
-        System.out.println("-------new line added---------");
+        log.info(""+il);
+        log.info("-------");
+        log.info("-------new line added---------");
 
 
-        System.out.println("----------------------------");
+        log.info("----------------------------");
 
 
         List<Integer> findDuplication = List.of(5, 3, 9, 7, 0);
@@ -216,9 +216,9 @@ public class StreamApiApplication {
                 .findFirst()
                 .orElse(null);
 
-        System.out.println("duplicated value: " + duplicated);
+        log.info("duplicated value: " + duplicated);
 
-        System.out.println("----------------------------");
+        log.info("----------------------------");
 
         List<Integer> integerList = List.of(5, 5, 9, 5, 5); // Replace with your list of integers
 
@@ -227,17 +227,17 @@ public class StreamApiApplication {
 
         Integer distinctValue = allEqual ? firstValue : null;
 
-        System.out.println("Distinct value: " + distinctValue);
+        log.info("Distinct value: " + distinctValue);
 
 
-        System.out.println("----------------------------******______------------");
+        log.info("----------------------------******______------------");
 
         List<Employee> listOfEmp = employee.stream().filter(employee1 -> !employee1.getFirstName().equals("Viru")).toList();
 
-        System.out.println("list of employee-->"+listOfEmp);
+        log.info("list of employee-->"+listOfEmp);
 
 
-        System.out.println("----------------------------###########--------------------");
+        log.info("----------------------------###########--------------------");
 
         Map<String, List<Employee>> mapTest = new HashMap<>();
         mapTest.put("test",employee);
@@ -258,26 +258,48 @@ public class StreamApiApplication {
                 System.out.println("--->"+io);
             }
         }
-        System.out.println("----------------------------??????******?????--------------------");
+        log.info("----------------------------??????******?????--------------------");
         List<Integer> orders = Arrays.asList(4,6,8,10,12,14,16,18,20,12);
         Collections.sort(orders);
         Collections.reverse(orders);
         System.out.println(orders);
 
-        System.out.println("**********normal*********");
+        log.info("**********normal*********");
 
         Date d = new Date();
         d.setDate(8);
         Student s1 = new Student(1,"venkat",d ,"9087783778","34,star street");
         System.out.println(s1);
 
-        System.out.println("************* Grouping same name in map *********************");
+        log.info("************* Grouping same name in map *********************");
 
         Map<String,List<Person>> collective = persons.stream().collect(Collectors.groupingBy(Person::getName));
         System.out.println(collective);
 
+        log.info("************* Grouping same name in map *********************");
+
+
+        List<Integer> integers = Arrays.asList(1,26,27,3,8,33);
+
+        List<Integer> getOut = integers.stream().filter(i->i%3==0).sorted((o1, o2) -> {
+            if (o1< o2)
+                return 1;
+            else
+                return -1;
+        }).collect(Collectors.toList());
+
+       log.info(""+getOut);
+
+        log.info("///////////////////");
+
+
+
+
+
 
     }
+
+
 
 
 }
