@@ -1,6 +1,8 @@
 package com.coding.stream.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -8,11 +10,50 @@ import java.util.*;
 @Slf4j
 public class Demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         findDuplicateCharInMyName();
         compareTwoArrays();
         storeUniqueDataInMap();
         convertListOfObjectIntMap();
+        swapTwoNumberWithOutNewVariable();
+        printKeysIfValuesAreSameInJson();
+    }
+
+    private static void printKeysIfValuesAreSameInJson() throws JsonProcessingException {
+        String json1 = "{\n" +
+                "    \"data1\":\"apple\",\n" +
+                "    \"data2\":\"banana\",\n" +
+                "    \"data3\":\"cat\"\n" +
+                "}";
+        String json2 = "{\n" +
+                "    \"data1\":\"apple\",\n" +
+                "    \"data2\":\"dog\",\n" +
+                "    \"data3\":\"cat\",\n" +
+                "    \"data4\":\"elephant\",\n" +
+                "    \"data5\":\"mobile\"\n" +
+                "}";
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String,Object> jsonMap1 = objectMapper.readValue(json1,Map.class);
+        Map<String,Object> jsonMap2 = objectMapper.readValue(json2,Map.class);
+        List<String> keys = new ArrayList<>();
+        jsonMap1.entrySet().forEach(value1->{
+            jsonMap2.entrySet().forEach(value2->{
+                if(value1.getValue().equals(value2.getValue())){
+                    keys.add(value1.getKey());
+                }
+            });
+        });
+        log.info("keys are printed"+keys);
+    }
+
+    private static void swapTwoNumberWithOutNewVariable() {
+        int a = 3 ;
+        int b = 5 ;
+        a = a+b;
+        b = a-b;
+        a = a-b;
+        log.info("a : " + a + " " + "b : " + b );
     }
 
     private static void convertListOfObjectIntMap() {
@@ -72,52 +113,15 @@ public class Demo {
         }
     }
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @ToString
     public static class Store{
         int id;
         String name;
         String location;
-
-        public Store() {
-        }
-
-        public Store(int id, String name, String location) {
-            this.id = id;
-            this.name = name;
-            this.location = location;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getLocation() {
-            return location;
-        }
-
-        public void setLocation(String location) {
-            this.location = location;
-        }
-
-        @Override
-        public String toString() {
-            return "Store{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    ", location='" + location + '\'' +
-                    '}';
-        }
     }
 }
 
