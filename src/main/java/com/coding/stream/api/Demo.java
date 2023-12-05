@@ -17,6 +17,32 @@ public class Demo {
         convertListOfObjectIntMap();
         swapTwoNumberWithOutNewVariable();
         printKeysIfValuesAreSameInJson();
+        palindromValues();
+        numberPattern();
+    }
+
+    private static void numberPattern(){
+        for(int i=5; i>=1; i--){
+            for(int j=1; j<=i;j++){
+                System.out.print(i+" ");
+//                System.out.print(j+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void palindromValues(){
+        String values = "DAD";
+        StringBuffer builders = new StringBuffer(values);
+        StringBuffer sb = new StringBuffer();
+        for(char c : values.toCharArray()){
+            sb.append(c);
+        }
+        log.info("sb "+ sb);
+        if(builders.equals(sb))
+            log.info("palindrom");
+        else
+            log.info("Not palindrom");
     }
 
     private static void printKeysIfValuesAreSameInJson() throws JsonProcessingException {
