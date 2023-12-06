@@ -2,6 +2,7 @@ package com.coding.stream.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -67,7 +68,7 @@ public class Demo {
                 "    \"data5\":\"mobile\"\n" +
                 "}";
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
         Map<String,Object> jsonMap1 = objectMapper.readValue(json1,Map.class);
         Map<String,Object> jsonMap2 = objectMapper.readValue(json2,Map.class);
         List<String> keys = new ArrayList<>();
