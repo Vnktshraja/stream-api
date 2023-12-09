@@ -21,13 +21,18 @@ public class Demo {
         printKeysIfValuesAreSameInJson();
         palindromValues();
         numberPattern();
+        mapObjectConversion();
 
+
+    }
+
+    private static void mapObjectConversion() {
         Map<String,Object> map = new HashMap<>();
         map.put("sit",14);
-
         BigDecimal dv = BigDecimal.valueOf(Double.parseDouble(String.valueOf(map.get("sit"))));
-       log.info("value is printed : "+dv);
-
+        double doubleValue = Double.parseDouble(String.valueOf(map.get("sit")));
+        log.info("BigDecimal value is printed : "+dv);
+        log.info("Double value is printed : "+doubleValue);
     }
 
     private static void numberPattern(){

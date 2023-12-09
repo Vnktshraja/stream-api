@@ -292,6 +292,25 @@ public class StreamApiApplication {
 
         log.info("///////////////////");
 
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+
+        Set<Integer> set = new LinkedHashSet<>();
+
+        for (int v : nums){
+            set.add(v);
+        }
+        log.info("values are : {}",set);
+        log.info("its size : "+set.size());
+
+        int rd = 0;
+        for(int i = 1 ; i<nums.length; i++){
+            if(nums[rd] != nums[i]){
+                rd++;
+                nums[rd] = nums[i];
+            }
+        }
+//        return rd+1;
+
 
 
 
