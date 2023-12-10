@@ -1,12 +1,11 @@
 package com.coding.stream.api;
-
+import com.coding.stream.api.ExceptionDemo.Bank;
 import com.coding.stream.api.ExceptionDemo.FirstTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -14,15 +13,15 @@ import java.util.*;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
-//        findDuplicateCharInMyName();
-//        compareTwoArrays();
-//        storeUniqueDataInMap();
-//        convertListOfObjectIntMap();
-//        swapTwoNumberWithOutNewVariable();
-//        printKeysIfValuesAreSameInJson();
-//        palindromValues();
-//        numberPattern();
-//        mapObjectConversion();
+        findDuplicateCharInMyName();
+        compareTwoArrays();
+        storeUniqueDataInMap();
+        convertListOfObjectIntMap();
+        swapTwoNumberWithOutNewVariable();
+        printKeysIfValuesAreSameInJson();
+        palindromValues();
+        numberPattern();
+        mapObjectConversion();
 
         log.info("-------------------------------");
 
@@ -37,10 +36,10 @@ public class Demo {
 
         log.info("-----------------------------");
 
-//        Bank b = new Bank();
-//        b.toGiveThreeChance();
-//        b.toGive10Chance();
-//        b.toGiveUntilCorrectInfo();
+        Bank b = new Bank();
+        b.toGiveThreeChance();
+        b.toGive10Chance();
+        b.toGiveUntilCorrectInfo();
 
     }
 

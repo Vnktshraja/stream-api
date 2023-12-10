@@ -1,8 +1,6 @@
 package com.coding.stream.api.ExceptionDemo;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
 import java.util.Scanner;
 
 
@@ -75,8 +73,8 @@ public class Bank {
 }
 @Slf4j
 class ATM {
-    private int accountNumber = 12345;
-    private int  password = 5555;
+    private int accountNumber = 1234;
+    private int  password = 1111;
     private int accn;
     private int pswd;
 
