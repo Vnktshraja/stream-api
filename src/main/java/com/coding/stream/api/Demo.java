@@ -1,5 +1,6 @@
 package com.coding.stream.api;
 
+import com.coding.stream.api.ExceptionDemo.FirstTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -13,16 +14,33 @@ import java.util.*;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
-        findDuplicateCharInMyName();
-        compareTwoArrays();
-        storeUniqueDataInMap();
-        convertListOfObjectIntMap();
-        swapTwoNumberWithOutNewVariable();
-        printKeysIfValuesAreSameInJson();
-        palindromValues();
-        numberPattern();
-        mapObjectConversion();
+//        findDuplicateCharInMyName();
+//        compareTwoArrays();
+//        storeUniqueDataInMap();
+//        convertListOfObjectIntMap();
+//        swapTwoNumberWithOutNewVariable();
+//        printKeysIfValuesAreSameInJson();
+//        palindromValues();
+//        numberPattern();
+//        mapObjectConversion();
 
+        log.info("-------------------------------");
+
+        try {
+            FirstTest firstTest = new FirstTest();
+            firstTest.testFunction();
+            log.info("Before Exception in main()"); // this will get execute bcz testFunction() not throwing exception in catch block.
+        }catch (Exception e){
+            log.error("Excption found in main(): "); // even catch will not execute.
+        }
+        log.info("After main()"); // this will execute normally bcz no throw in above catch.
+
+        log.info("-----------------------------");
+
+//        Bank b = new Bank();
+//        b.toGiveThreeChance();
+//        b.toGive10Chance();
+//        b.toGiveUntilCorrectInfo();
 
     }
 

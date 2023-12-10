@@ -1,7 +1,5 @@
 package com.coding.stream.api.Entity;
 
-import com.coding.stream.api.Entity.Division;
-
 public class Beta {
 
     public void launch(){
