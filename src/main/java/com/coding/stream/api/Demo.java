@@ -13,33 +13,44 @@ import java.util.*;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
-        findDuplicateCharInMyName();
-        compareTwoArrays();
-        storeUniqueDataInMap();
-        convertListOfObjectIntMap();
-        swapTwoNumberWithOutNewVariable();
-        printKeysIfValuesAreSameInJson();
-        palindromValues();
-        numberPattern();
-        mapObjectConversion();
-
-        log.info("-------------------------------");
-
-        try {
-            FirstTest firstTest = new FirstTest();
-            firstTest.testFunction();
-            log.info("Before Exception in main()"); // this will get execute bcz testFunction() not throwing exception in catch block.
-        }catch (Exception e){
-            log.error("Excption found in main(): "); // even catch will not execute.
+        String input = "";
+        if (!Objects.requireNonNullElse(input, "").isBlank()) {
+            System.out.println("String is not empty, not blank, and not null.");
+        } else {
+            System.out.println("String is empty, blank, or null.");
         }
-        log.info("After main()"); // this will execute normally bcz no throw in above catch.
+//        findDuplicateCharInMyName();
+//        compareTwoArrays();
+//        storeUniqueDataInMap();
+//        convertListOfObjectIntMap();
+//        swapTwoNumberWithOutNewVariable();
+//        printKeysIfValuesAreSameInJson();
+//        palindromValues();
+//        numberPattern();
+//        mapObjectConversion();
 
-        log.info("-----------------------------");
+//        log.info("-------------------------------");
+//
+//        try {
+//            FirstTest firstTest = new FirstTest();
+//            firstTest.testFunction();
+//            log.info("Before Exception in main()"); // this will get execute bcz testFunction() not throwing exception in catch block.
+//        }catch (Exception e){
+//            log.error("Excption found in main():{} ",e.getMessage()); // even catch will not execute.
+//        }
+//        log.info("After main()"); // this will execute normally bcz no throw in above catch.
+//
+//        log.info("-----------------------------");
 
-        Bank b = new Bank();
-        b.toGiveThreeChance();
-        b.toGive10Chance();
-        b.toGiveUntilCorrectInfo();
+//        Bank b = new Bank();
+//        b.toGiveThreeChance();
+//        b.toGive10Chance();
+//        b.toGiveUntilCorrectInfo();
+//        b.toGive10ChanceUsingDoWhile();
+
+        boolean a = true;
+        boolean b = !a;
+        log.info("value is " + b);
 
     }
 

@@ -68,6 +68,28 @@ public class Bank {
         log.info("Attempted Count" + attemptCount);
     }
 
+    public void toGive10ChanceUsingDoWhile() {
+        ATM atm = new ATM();
+        int maxAttempts = 10;
+        int attemptCount = 0;
+
+        do {
+            try {
+                atm.login();
+                atm.verify();
+                break; // Break out of the loop if successful
+            } catch (Exception e) {
+                log.info("Enter correct info, try " + attemptCount + " time(s)");
+                attemptCount++;
+            }
+        } while (attemptCount <= maxAttempts);
+
+        if (attemptCount > maxAttempts) {
+            log.info("Your Account is Blocked..!");
+        }
+    }
+
+
 
 
 }

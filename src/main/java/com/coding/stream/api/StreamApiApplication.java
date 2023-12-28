@@ -1,5 +1,4 @@
 package com.coding.stream.api;
-
 import com.coding.stream.api.Entity.Anonim;
 import com.coding.stream.api.Entity.Employee;
 import com.coding.stream.api.Entity.Person;
