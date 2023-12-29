@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -15,9 +17,15 @@ public class Demo {
     public static void main(String[] args) throws JsonProcessingException {
         String input = "";
         if (!Objects.requireNonNullElse(input, "").isBlank()) {
-            System.out.println("String is not empty, not blank, and not null.");
+            System.out.println("String is not empty, not blank, and not null." + input);
         } else {
-            System.out.println("String is empty, blank, or null.");
+            System.out.println("String is empty, blank, or null."+input);
+        }
+
+        if (StringUtils.isNotBlank(input)) {
+            System.out.println("The string is not empty, not blank, and not null.");
+        } else {
+            System.out.println("The string is either empty, blank, or null.");
         }
 //        findDuplicateCharInMyName();
 //        compareTwoArrays();
