@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -15,18 +16,18 @@ import java.util.*;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
-        String input = "";
-        if (!Objects.requireNonNullElse(input, "").isBlank()) {
-            System.out.println("String is not empty, not blank, and not null." + input);
-        } else {
-            System.out.println("String is empty, blank, or null."+input);
-        }
-
-        if (StringUtils.isNotBlank(input)) {
-            System.out.println("The string is not empty, not blank, and not null.");
-        } else {
-            System.out.println("The string is either empty, blank, or null.");
-        }
+//        String input = "";
+//        if (!Objects.requireNonNullElse(input, "").isBlank()) {
+//            System.out.println("String is not empty, not blank, and not null." + input);
+//        } else {
+//            System.out.println("String is empty, blank, or null."+input);
+//        }
+//
+//        if (StringUtils.isNotBlank(input)) {
+//            System.out.println("The string is not empty, not blank, and not null.");
+//        } else {
+//            System.out.println("The string is either empty, blank, or null.");
+//        }
 //        findDuplicateCharInMyName();
 //        compareTwoArrays();
 //        storeUniqueDataInMap();
@@ -56,10 +57,15 @@ public class Demo {
 //        b.toGiveUntilCorrectInfo();
 //        b.toGive10ChanceUsingDoWhile();
 
-        boolean a = true;
-        boolean b = !a;
-        log.info("value is " + b);
+        MutableBoolean access = new MutableBoolean(true);
+        newMethod(access);
 
+        log.info("Print boolean : "+ access);
+
+    }
+
+    private static void newMethod(MutableBoolean a) {
+        a.setFalse();
     }
 
     private static void mapObjectConversion() {
