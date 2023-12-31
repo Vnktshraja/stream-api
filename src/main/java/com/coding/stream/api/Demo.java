@@ -37,6 +37,7 @@ public class Demo {
 //        palindromValues();
 //        numberPattern();
 //        mapObjectConversion();
+        removeAnyFieldOnMapContainsMultipleMap();
 
 //        log.info("-------------------------------");
 //
@@ -57,11 +58,77 @@ public class Demo {
 //        b.toGiveUntilCorrectInfo();
 //        b.toGive10ChanceUsingDoWhile();
 
-        MutableBoolean access = new MutableBoolean(true);
-        newMethod(access);
+//        MutableBoolean access = new MutableBoolean(true);
+//        newMethod(access);
+//        log.info("Print boolean : "+ access);
 
-        log.info("Print boolean : "+ access);
+//        List<String> listOf = new ArrayList<>();
+//        if(listOf==null){
+//            log.info("its null");
+//        }else if (listOf.isEmpty()){
+//            log.info("it is empty"+listOf);
+//        }
 
+    }
+
+    private static void removeAnyFieldOnMapContainsMultipleMap() {
+        List<Map<String, Object>> omgList = new ArrayList<>();
+        Map<String, Object> omg = new HashMap<>();
+        omg.put("orderMatchingGroupId", 101);
+        omg.put("createdDate", "2023-02-04");
+        omg.put("modifiedBy", null);
+        omgList.add(omg);
+        List<Map<String, Object>> omgTrancheList = new ArrayList<>();
+        Map<String, Object> omgTranche = new HashMap<>();
+        omgTranche.put("trancheName", "5Y");
+        omgTranche.put("createdDate", "2023-02-04");
+        omgTranche.put("modifiedBy", null);
+        omgTrancheList.add(omgTranche);
+        omg.put("orderMatchingGroupTranche", omgTrancheList);
+        List<Map<String, Object>> trancheOrderList = new ArrayList<>();
+        Map<String, Object> trancheOrder = new HashMap<>();
+        trancheOrder.put("orderSize", 1000);
+        trancheOrder.put("createdDate", "2023-02-04");
+        trancheOrder.put("modifiedBy", null);
+        omgTranche.put("trancheOrders", trancheOrderList);
+        trancheOrderList.add(trancheOrder);
+        Map<String, Object> orderUpdate = new HashMap<>();
+        orderUpdate.put("modifiedBy", "U101");
+        orderUpdate.put("orderMatchingGroup", omgList);
+//        removeCreatedDate(orderUpdate);
+        updateModifiedBy(orderUpdate, "U101");
+        log.info("removed all the created date from map {}", orderUpdate);
+    }
+
+    private static void updateModifiedBy(Map<String, Object> map, String newModifiedByValue) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if ("modifiedBy".equals(entry.getKey())) {
+                map.put(entry.getKey(), newModifiedByValue);
+            } else if (entry.getValue() instanceof Map) {
+                updateModifiedBy((Map<String, Object>) entry.getValue(), newModifiedByValue);
+            } else if (entry.getValue() instanceof List) {
+                for (Object element : (List<Object>) entry.getValue()) {
+                    if (element instanceof Map) {
+                        updateModifiedBy((Map<String, Object>) element, newModifiedByValue);
+                    }
+                }
+            }
+        }
+    }
+
+    private static void removeCreatedDate(Map<String, Object> map) {
+        map.keySet().removeIf(key -> key.equals("createdDate"));
+        map.values().forEach(value -> {
+            if (value instanceof Map) {
+                removeCreatedDate((Map<String, Object>) value);
+            } else if (value instanceof List) {
+                ((List<Object>) value).forEach(element -> {
+                    if (element instanceof Map) {
+                        removeCreatedDate((Map<String, Object>) element);
+                    }
+                });
+            }
+        });
     }
 
     private static void newMethod(MutableBoolean a) {
