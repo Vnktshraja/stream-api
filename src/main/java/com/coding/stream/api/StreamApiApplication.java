@@ -309,8 +309,15 @@ public class StreamApiApplication {
         }
 //        return rd+1;
 
-        log.info("-------------%%%%%%%%---------------");
+        log.info("------------- primitive int reverse ---------------");
 
+        int e = 2345678;
+        int si = 0;
+        while(e!=0){
+            si=si*10+e%10;
+            e=e/10;
+        }
+        log.info("--> : "+si);
 
 
     }

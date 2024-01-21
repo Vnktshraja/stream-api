@@ -1,10 +1,8 @@
 package com.coding.stream.api.ExceptionDemo;
-import com.fasterxml.jackson.annotation.JsonTypeId;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Scanner;
 
 

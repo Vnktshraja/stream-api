@@ -16,6 +16,24 @@ import java.util.*;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
+//        {   "userId":"101",
+//                "name":"venkat",
+//            "columns": [
+//            {
+//                "col1":"name",
+//                    "with":1
+//            },
+//            {
+//                "col1":"name2",
+//                    "with":2
+//            },
+//            {
+//                "col1":"name3",
+//                    "with":3
+//            }
+//  ]
+//        }
+
 //        String input = "";
 //        if (!Objects.requireNonNullElse(input, "").isBlank()) {
 //            System.out.println("String is not empty, not blank, and not null." + input);
@@ -37,7 +55,8 @@ public class Demo {
 //        palindromValues();
 //        numberPattern();
 //        mapObjectConversion();
-        removeAnyFieldOnMapContainsMultipleMap();
+//        removeAnyFieldOnMapContainsMultipleMap();
+        switchTest();
 
 //        log.info("-------------------------------");
 //
@@ -69,6 +88,27 @@ public class Demo {
 //            log.info("it is empty"+listOf);
 //        }
 
+    }
+
+    private static void switchTest() {
+        String value = "yes";
+        switch (value){
+            case "yes":
+                method1();
+                log.info("3");
+                break;
+            case "no":
+                log.info("6");
+                break;
+            default:
+                log.info("default");
+
+        }
+    }
+
+    private static void method1() {
+        log.info("5");
+        return;
     }
 
     private static void removeAnyFieldOnMapContainsMultipleMap() {
