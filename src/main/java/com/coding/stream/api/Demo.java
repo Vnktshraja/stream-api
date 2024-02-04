@@ -11,28 +11,12 @@ import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.IntStream;
 
 @Slf4j
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
-//        {   "userId":"101",
-//                "name":"venkat",
-//            "columns": [
-//            {
-//                "col1":"name",
-//                    "with":1
-//            },
-//            {
-//                "col1":"name2",
-//                    "with":2
-//            },
-//            {
-//                "col1":"name3",
-//                    "with":3
-//            }
-//  ]
-//        }
 
 //        String input = "";
 //        if (!Objects.requireNonNullElse(input, "").isBlank()) {
@@ -56,7 +40,8 @@ public class Demo {
 //        numberPattern();
 //        mapObjectConversion();
 //        removeAnyFieldOnMapContainsMultipleMap();
-        switchTest();
+//        switchTest();
+        fibbocanci();
 
 //        log.info("-------------------------------");
 //
@@ -88,6 +73,21 @@ public class Demo {
 //            log.info("it is empty"+listOf);
 //        }
 
+    }
+
+    private static void fibbocanci() {
+        // 0 1 1 2 3 5 8 13
+        int i = 0;
+        int j = 1;
+        int count = 0;
+
+        while (count<10) {
+            System.out.println(i);
+            int next = i + j;
+            i = j;
+            j = next;
+            count++;
+        }
     }
 
     private static void switchTest() {
@@ -301,6 +301,8 @@ public class Demo {
             log.info("Duplicate found");
         }
     }
+
+
 
     @Getter
     @Setter
