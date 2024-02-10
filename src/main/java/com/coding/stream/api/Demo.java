@@ -140,11 +140,12 @@ public class Demo {
         orderUpdate.put("orderMatchingGroup", omgList);
 //        removeCreatedDate(orderUpdate);
         updateModifiedBy(orderUpdate, "U101");
-        updateMasking(orderUpdate, "XXXXXXXX");
+        updateMasking(orderUpdate);
         log.info("removed all the created date from map {}", orderUpdate);
     }
 
-    private static void updateMasking(Map<String, Object> map, String masking) {
+    private static void updateMasking(Map<String, Object> map) {
+        String masking = "XXXXX";
         List<String> hide = new ArrayList<>();
         hide.add("orderMatchingGroupToRemove");
         hide.add("orderMatchingGroupTrancheRemove");
@@ -153,11 +154,11 @@ public class Demo {
             if (hide.contains(entry.getKey())) {
                 map.put(entry.getKey(), masking);
             } else if (entry.getValue() instanceof Map) {
-                updateMasking((Map<String, Object>) entry.getValue(), masking);
+                updateMasking((Map<String, Object>) entry.getValue());
             } else if (entry.getValue() instanceof List) {
                 for (Object element : (List<Object>) entry.getValue()) {
                     if (element instanceof Map) {
-                        updateMasking((Map<String, Object>) element, masking);
+                        updateMasking((Map<String, Object>) element);
                     }
                 }
             }
