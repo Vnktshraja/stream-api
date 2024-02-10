@@ -39,9 +39,9 @@ public class Demo {
 //        palindromValues();
 //        numberPattern();
 //        mapObjectConversion();
-//        removeAnyFieldOnMapContainsMultipleMap();
+        removeAnyFieldOnMapContainsMultipleMap();
 //        switchTest();
-        fibbocanci();
+//        fibbocanci();
 
 //        log.info("-------------------------------");
 //
@@ -117,12 +117,14 @@ public class Demo {
         omg.put("orderMatchingGroupId", 101);
         omg.put("createdDate", "2023-02-04");
         omg.put("modifiedBy", null);
+        omg.put("orderMatchingGroupToRemove","omgRemove");
         omgList.add(omg);
         List<Map<String, Object>> omgTrancheList = new ArrayList<>();
         Map<String, Object> omgTranche = new HashMap<>();
         omgTranche.put("trancheName", "5Y");
         omgTranche.put("createdDate", "2023-02-04");
         omgTranche.put("modifiedBy", null);
+        omgTranche.put("orderMatchingGroupTrancheRemove","omgtRemove");
         omgTrancheList.add(omgTranche);
         omg.put("orderMatchingGroupTranche", omgTrancheList);
         List<Map<String, Object>> trancheOrderList = new ArrayList<>();
@@ -130,6 +132,7 @@ public class Demo {
         trancheOrder.put("orderSize", 1000);
         trancheOrder.put("createdDate", "2023-02-04");
         trancheOrder.put("modifiedBy", null);
+        trancheOrder.put("TrancheOrderRemove","trancheOrderRemove");
         omgTranche.put("trancheOrders", trancheOrderList);
         trancheOrderList.add(trancheOrder);
         Map<String, Object> orderUpdate = new HashMap<>();
@@ -137,11 +140,32 @@ public class Demo {
         orderUpdate.put("orderMatchingGroup", omgList);
 //        removeCreatedDate(orderUpdate);
         updateModifiedBy(orderUpdate, "U101");
+        updateMasking(orderUpdate, "XXXXXXXX");
         log.info("removed all the created date from map {}", orderUpdate);
     }
 
+    private static void updateMasking(Map<String, Object> map, String masking) {
+        List<String> hide = new ArrayList<>();
+        hide.add("orderMatchingGroupToRemove");
+        hide.add("orderMatchingGroupTrancheRemove");
+        hide.add("TrancheOrderRemove");
+        map.entrySet().forEach(entry -> {
+            if (hide.contains(entry.getKey())) {
+                map.put(entry.getKey(), masking);
+            } else if (entry.getValue() instanceof Map) {
+                updateMasking((Map<String, Object>) entry.getValue(), masking);
+            } else if (entry.getValue() instanceof List) {
+                for (Object element : (List<Object>) entry.getValue()) {
+                    if (element instanceof Map) {
+                        updateMasking((Map<String, Object>) element, masking);
+                    }
+                }
+            }
+        });
+    }
+
     private static void updateModifiedBy(Map<String, Object> map, String newModifiedByValue) {
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
+        map.entrySet().forEach(entry->{
             if ("modifiedBy".equals(entry.getKey())) {
                 map.put(entry.getKey(), newModifiedByValue);
             } else if (entry.getValue() instanceof Map) {
@@ -153,7 +177,7 @@ public class Demo {
                     }
                 }
             }
-        }
+        });
     }
 
     private static void removeCreatedDate(Map<String, Object> map) {
