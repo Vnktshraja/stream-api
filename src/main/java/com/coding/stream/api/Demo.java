@@ -1,4 +1,5 @@
 package com.coding.stream.api;
+import com.coding.stream.api.Entity.Student;
 import com.coding.stream.api.ExceptionDemo.Bank;
 import com.coding.stream.api.ExceptionDemo.FirstTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,6 +18,16 @@ import java.util.stream.IntStream;
 public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
+
+        Student s = new Student();
+        s.setId(1);
+        s.setAddress("address");
+        s.setDob(new Date("10/02/2022"));
+        s.setMobile(Long.valueOf("1234"));
+        s.setName("venkat");
+        String s1 = s.setCloneStudent();
+        log.info("object1 is "+ s);
+        log.info("Object2 is "+ s1);
 
 //        String input = "";
 //        if (!Objects.requireNonNullElse(input, "").isBlank()) {
@@ -39,7 +50,7 @@ public class Demo {
 //        palindromValues();
 //        numberPattern();
 //        mapObjectConversion();
-        removeAnyFieldOnMapContainsMultipleMap();
+//        removeAnyFieldOnMapContainsMultipleMap();
 //        switchTest();
 //        fibbocanci();
 
@@ -139,7 +150,7 @@ public class Demo {
         orderUpdate.put("modifiedBy", "U101");
         orderUpdate.put("orderMatchingGroup", omgList);
 //        removeCreatedDate(orderUpdate);
-        updateModifiedBy(orderUpdate, "U101");
+//        updateModifiedBy(orderUpdate, "U101");
         updateMasking(orderUpdate);
         log.info("removed all the created date from map {}", orderUpdate);
     }
@@ -152,7 +163,8 @@ public class Demo {
         hide.add("TrancheOrderRemove");
         map.entrySet().forEach(entry -> {
             if (hide.contains(entry.getKey())) {
-                map.put(entry.getKey(), masking);
+//                map.put(entry.getKey(), masking);
+                entry.setValue(masking);
             } else if (entry.getValue() instanceof Map) {
                 updateMasking((Map<String, Object>) entry.getValue());
             } else if (entry.getValue() instanceof List) {

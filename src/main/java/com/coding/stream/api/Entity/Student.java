@@ -21,6 +21,11 @@ public class Student {
         this.address = address;
     }
 
+    public Student(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -61,12 +66,20 @@ public class Student {
         this.address = address;
     }
 
+    public String setCloneStudent(){
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dob=" + dob +
                 ", address='" + address + '\'' +
                 '}';
     }
