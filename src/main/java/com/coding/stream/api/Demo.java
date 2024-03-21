@@ -11,6 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.IsoChronology;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -19,15 +26,22 @@ public class Demo {
 
     public static void main(String[] args) throws JsonProcessingException {
 
-        Student s = new Student();
-        s.setId(1);
-        s.setAddress("address");
-        s.setDob(new Date("10/02/2022"));
-        s.setMobile(Long.valueOf("1234"));
-        s.setName("venkat");
-        String s1 = s.setCloneStudent();
-        log.info("object1 is "+ s);
-        log.info("Object2 is "+ s1);
+        String stringTime = "04:20";
+        LocalDate date = LocalDate.parse("2024-03-21");
+        LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.parse(stringTime));
+        String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        System.out.println("LocalDateTime: " + formattedDateTime);
+
+
+//        Student s = new Student();
+//        s.setId(1);
+//        s.setAddress("address");
+//        s.setDob(new Date("10/02/2022"));
+//        s.setMobile(Long.valueOf("1234"));
+//        s.setName("venkat");
+//        String s1 = s.setCloneStudent();
+//        log.info("object1 is "+ s);
+//        log.info("Object2 is "+ s1);
 
 //        String input = "";
 //        if (!Objects.requireNonNullElse(input, "").isBlank()) {
