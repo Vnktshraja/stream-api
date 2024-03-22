@@ -8,6 +8,7 @@ public class Employee {
     private String lastName;
     private Double salary;
     private List<String> projects;
+    private String addedFromGitThroughtBrowser;
 
     public Employee() {
     }
